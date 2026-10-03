@@ -20,6 +20,17 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* AMS Manthan Calligraphic Font Styling */
+@font-face {
+  font-family: 'AMS Manthan';
+  src: local('AMS Manthan'), local('AMS Manthan Devanagari'), local('AMSManthan');
+  font-display: swap;
+}
+
+.font-ams-manthan, .font-namaste {
+  font-family: 'AMS Manthan', 'AMS Manthan Devanagari', 'Yatra One', 'Rozha One', 'Kalam', serif;
+}
+
 /* Custom sleek scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
