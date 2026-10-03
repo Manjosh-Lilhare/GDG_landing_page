@@ -47,7 +47,7 @@ export default function Hero({ onOpenJoinModal }) {
           >
             <div className="inline-flex items-center justify-center lg:justify-start gap-2 mb-2">
               <h1 className="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-none">
-                Namaste Folks
+                <span className="font-ams-manthan text-[#FF6D00] font-normal inline-block hover:scale-105 transition-transform duration-300 mr-2">नमस्ते</span> Folks
               </h1>
               <span className="text-4xl sm:text-6xl animate-bounce">👋</span>
             </div>

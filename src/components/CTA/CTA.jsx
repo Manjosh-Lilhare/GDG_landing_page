@@ -36,7 +36,7 @@ export default function CTA({ onOpenJoinModal }) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-sans text-lg sm:text-xl text-[#C2C6D5] max-w-xl mx-auto mb-10"
         >
-          Namaste Folks. Your next idea could start here at the Zero Mile datum.
+          <span className="font-ams-manthan text-[#FF6D00] text-2xl mr-1">नमस्ते</span> Folks. Your next idea could start here at the Zero Mile datum.
         </motion.p>
 
         <motion.div

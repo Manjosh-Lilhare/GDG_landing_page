@@ -23,7 +23,7 @@ export default function Footer({ onOpenJoinModal }) {
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1A1C20] font-mono text-xs text-[#FFDBCB] border border-white/5">
               <Compass className="w-3.5 h-3.5 text-[#FD6C00]" />
-              <span>Namaste Folks 👋 Zero Mile Stone • 21.1458° N</span>
+              <span><span className="font-ams-manthan text-[#FF6D00] text-sm">नमस्ते</span> Folks 👋 Zero Mile Stone • 21.1458° N</span>
             </div>
           </div>
 

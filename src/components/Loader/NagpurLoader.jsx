@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Stages definition with precise normalized time windows (0.0 to 1.0)
 const STAGES = [
-  { id: 1, title: "Namaste Folks 👋", subtitle: "CENTRAL INDIA'S TECH HEARTBEAT", start: 0.0, end: 0.18, color: "#FF6D00" },
+  { id: 1, title: "नमस्ते Folks 👋", subtitle: "CENTRAL INDIA'S TECH HEARTBEAT", start: 0.0, end: 0.18, color: "#FF6D00" },
   { id: 2, title: "From the heart of India.", subtitle: "ZERO MILE DATUM • 21.1458° N, 79.0882° E", start: 0.18, end: 0.38, color: "#4285F4" },
   { id: 3, title: "Rooted in heritage.", subtitle: "ARCHITECTURAL HARMONY × SCALE", start: 0.38, end: 0.58, color: "#34A853" },
   { id: 4, title: "Born in the Orange City.", subtitle: "GRASSROOTS PROPELLANT FOR CENTRAL INDIA", start: 0.58, end: 0.78, color: "#FF6D00" },
   { id: 5, title: "Where culture meets technology.", subtitle: "LEARN • BUILD • CONNECT • GROW", start: 0.78, end: 0.90, color: "#FBBC04" },
-  { id: 6, title: "GDG Nagpur", subtitle: "Namaste Folks 👋", start: 0.90, end: 1.0, color: "#4285F4" }
+  { id: 6, title: "GDG Nagpur", subtitle: "नमस्ते Folks 👋", start: 0.90, end: 1.0, color: "#4285F4" }
 ];
 
 export default function NagpurLoader({ onComplete }) {
@@ -231,7 +231,7 @@ export default function NagpurLoader({ onComplete }) {
               className="flex flex-col items-center"
             >
               <h1 className="text-4xl sm:text-6xl font-extrabold font-display text-white tracking-tight leading-tight">
-                Namaste Folks <span className="inline-block animate-bounce">👋</span>
+                <span className="font-ams-manthan text-[#FF6D00] inline-block font-normal transform hover:scale-105 transition-transform mr-2">नमस्ते</span> Folks <span className="inline-block animate-bounce">👋</span>
               </h1>
               <p className="text-sm font-mono text-[#FF6D00] mt-4 uppercase tracking-[0.25em] font-semibold">
                 Central India's Tech Heartbeat
@@ -354,7 +354,7 @@ export default function NagpurLoader({ onComplete }) {
                 GDG Nagpur
               </h1>
               <p className="text-base font-display text-[#FF6D00] mt-2 font-bold tracking-wide">
-                Namaste Folks 👋
+                <span className="font-ams-manthan text-xl font-normal mr-1">नमस्ते</span> Folks 👋
               </p>
             </motion.div>
           )}

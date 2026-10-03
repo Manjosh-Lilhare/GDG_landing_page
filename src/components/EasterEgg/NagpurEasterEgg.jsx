@@ -27,7 +27,7 @@ export default function NagpurEasterEgg() {
               className="absolute bottom-12 left-0 w-64 p-4 rounded-xl bg-[#161920] border border-[#FD6C00]/40 shadow-2xl backdrop-blur-xl text-left"
             >
               <div className="font-display font-bold text-sm text-white mb-1">
-                Namaste from Nagpur 👋
+                <span className="font-ams-manthan text-[#FF6D00] text-base font-normal">नमस्ते</span> from Nagpur 👋
               </div>
               <p className="font-mono text-xs text-[#C2C6D5]">
                 Latitude 21.1458° N • Longitude 79.0882° E
