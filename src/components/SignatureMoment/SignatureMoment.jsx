@@ -348,11 +348,11 @@ export default function SignatureMoment() {
       {/* =================================================================== */}
       <div className="w-full bg-gradient-to-t from-[#12151C] to-[#0A0C10] py-4 px-6 border-t border-white/10 z-20 flex items-center justify-between font-mono text-xs text-[#8C909F]">
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#34A853] animate-pulse" />
-          <span className="text-white font-bold tracking-wider">TRANSITIONING TO HERITAGE BLUEPRINT CIRCUIT</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF6D00] animate-pulse" />
+          <span className="text-white font-bold tracking-wider">TRANSITIONING TO ORANGE CITY CIRCUIT</span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 text-[#34A853]">
-          <span>INDIAN GEOMETRY MORPHING</span>
+        <div className="hidden sm:flex items-center gap-2 text-[#FF6D00]">
+          <span>CULTURE TO TECH MORPHING</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
         </div>
       </div>

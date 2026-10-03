@@ -70,6 +70,9 @@ export default function App() {
           {/* Rooted in Nagpur */}
           <Heritage />
 
+          {/* Cinematic Scroll Signature Moment ("CONNECTED EVERYWHERE") */}
+          <SignatureMoment />
+
           {/* Orange City Interaction */}
           <OrangeCity />
 
@@ -81,9 +84,6 @@ export default function App() {
 
           {/* Community Stories */}
           <Stories />
-
-          {/* Cinematic Scroll Signature Moment */}
-          <SignatureMoment />
 
           {/* Heritage -> Tech Blueprint Transition */}
           <HeritageTransition />
