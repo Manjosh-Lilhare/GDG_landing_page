@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NagpurCulturalSystem from './components/Background/NagpurCulturalSystem';
+import CursorFollower from './components/Background/CursorFollower';
 import NagpurLoader from './components/Loader/NagpurLoader';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -41,9 +42,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#E2E2E8] relative selection:bg-[#FD6C00] selection:text-black font-sans overflow-x-hidden">
-      
-      {/* 0. PERSISTENT ANIMATED BACKGROUND CANVAS (6-Orbit Heritage System) */}
+
+      {/* 0. PERSISTENT ANIMATED BACKGROUND CANVAS & CURSOR AMBIENCE */}
       <NagpurCulturalSystem />
+      <CursorFollower />
 
       {/* 1. Cinematic Website Loader (6-7s sequence) */}
       {loading && (
@@ -70,9 +72,6 @@ export default function App() {
           {/* Rooted in Nagpur */}
           <Heritage />
 
-          {/* Cinematic Scroll Signature Moment ("CONNECTED EVERYWHERE") */}
-          <SignatureMoment />
-
           {/* Orange City Interaction */}
           <OrangeCity />
 
@@ -84,6 +83,9 @@ export default function App() {
 
           {/* Community Stories */}
           <Stories />
+
+          {/* Cinematic Scroll Signature Moment */}
+          <SignatureMoment />
 
           {/* Heritage -> Tech Blueprint Transition */}
           <HeritageTransition />

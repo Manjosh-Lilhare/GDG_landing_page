@@ -5,16 +5,16 @@ import { Network, MapPin, Zap, Globe, Cpu, Radio, ShieldCheck, ArrowDown } from 
 export default function SignatureMoment() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
   });
 
-  // Scale and opacity transformations
+  // Scale and opacity transformations - Always visible (1.0), no blank dark voids
   const scale = useTransform(scrollYProgress, [0.0, 0.5, 1.0], [0.98, 1, 0.98]);
   const opacity = useTransform(scrollYProgress, [0.0, 0.1, 0.9, 1.0], [1, 1, 1, 1]);
-  
+
   // Phase 1 (0.0 to 0.33): ROOTED HERE
   const phase1Opacity = useTransform(scrollYProgress, [0.0, 0.25, 0.33], [1, 1, 0]);
   const phase1Scale = useTransform(scrollYProgress, [0.0, 0.25, 0.33], [1, 1, 1.06]);
@@ -133,8 +133,10 @@ export default function SignatureMoment() {
       ref={containerRef}
       className="relative w-full h-[180vh] bg-[#0A0C10] flex flex-col justify-between overflow-hidden z-10 border-t border-b border-[#FF6D00]/30"
     >
-      {/* TOP CONNECTOR BANNER */}
-      <div className="w-full bg-gradient-to-b from-[#12151C] to-[#0A0C10] py-3.5 px-6 border-b border-white/10 z-20 flex items-center justify-between font-mono text-xs text-[#8C909F]">
+      {/* =================================================================== */}
+      {/* TOP CONNECTOR BANNER (BRIDGES PREVIOUS SECTION Seamlessly) */}
+      {/* =================================================================== */}
+      <div className="w-full bg-gradient-to-b from-[#12151C] to-[#0A0C10] py-4 px-6 border-b border-white/10 z-20 flex items-center justify-between font-mono text-xs text-[#8C909F]">
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 rounded-full bg-[#FF6D00] animate-ping" />
           <span className="text-white font-bold tracking-wider">ENTERING ZERO MILE TELEMETRY HUB</span>
@@ -146,7 +148,7 @@ export default function SignatureMoment() {
       </div>
 
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-between p-6 overflow-hidden">
-        
+
         {/* Network Canvas Background */}
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
@@ -154,16 +156,18 @@ export default function SignatureMoment() {
         <div className="absolute w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-[#FF6D00]/20 via-[#4285F4]/20 to-[#34A853]/20 blur-[130px] pointer-events-none z-0" />
 
         {/* TOP HEADER TELEMETRY BAR */}
-        <div className="relative z-20 w-full max-w-5xl flex items-center justify-between pt-3 pb-2.5 border-b border-white/10 font-mono text-xs text-[#8C909F] backdrop-blur-md bg-black/40 px-4 rounded-xl shadow-lg">
+        <div className="relative z-20 w-full max-w-6xl flex items-center justify-between pt-3 pb-2.5 border-b border-white/10 font-mono text-xs text-[#8C909F] backdrop-blur-md bg-black/40 px-4 rounded-xl shadow-lg">
           <div className="flex items-center gap-3">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6D00] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF6D00]" />
             </span>
-            <span className="text-white font-bold tracking-wider">NAGPUR CORE DATUM</span>
+            <span className="text-white font-bold tracking-wider">NAGPUR CORE ARCHITECTURE</span>
+            <span className="text-white/20">|</span>
+            <span className="hidden sm:inline text-[#FF6D00] font-semibold">SYSTEM 01 • ZERO MILE ORIGIN</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-1.5 text-[#4285F4]">
               <Radio className="w-3.5 h-3.5 animate-pulse" />
               <span>RADAR SCAN ACTIVE</span>
@@ -174,48 +178,65 @@ export default function SignatureMoment() {
           </div>
         </div>
 
+        {/* Corner Crosshair HUD Elements */}
+        <div className="absolute top-20 left-8 font-mono text-[10px] text-white/30 pointer-events-none">+ CORNER_NW • DATUM_01</div>
+        <div className="absolute top-20 right-8 font-mono text-[10px] text-white/30 pointer-events-none">+ CORNER_NE • RADAR_02</div>
+        <div className="absolute bottom-20 left-8 font-mono text-[10px] text-white/30 pointer-events-none">+ CORNER_SW • HUB_03</div>
+        <div className="absolute bottom-20 right-8 font-mono text-[10px] text-white/30 pointer-events-none">+ CORNER_SE • CIRCUIT_04</div>
+
         {/* CENTER MAIN CONTENT DISPLAY */}
-        <motion.div style={{ scale, opacity }} className="relative z-10 w-full max-w-4xl px-6 text-center my-auto">
-          
-          {/* =================================================================== */}
-          {/* PHASE 1: ROOTED HERE (CLEAN & ELEGANT) */}
-          {/* =================================================================== */}
+        <motion.div style={{ scale, opacity }} className="relative z-10 w-full max-w-5xl px-6 text-center my-auto">
+
+          {/* PHASE 1: ROOTED HERE */}
           <motion.div
             style={{ opacity: phase1Opacity, scale: phase1Scale }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
           >
-            {/* Clean Vector Compass Emblem */}
-            <div className="relative w-36 h-36 mb-6 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border border-[#FF6D00]/40 animate-spin-slow" />
-              <div className="absolute inset-3 rounded-full border border-[#4285F4]/30 border-dashed" />
-              
-              <div className="w-16 h-16 rounded-full bg-[#FF6D00]/20 border-2 border-[#FF6D00] flex flex-col items-center justify-center shadow-[0_0_40px_rgba(255,109,0,0.4)]">
-                <MapPin className="w-7 h-7 text-[#FF6D00]" />
+            <div className="relative w-40 h-40 mb-5 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full border border-[#FF6D00]/50 animate-spin-slow" />
+              <div className="absolute inset-4 rounded-full border border-[#4285F4]/40 border-dashed" />
+
+              <div className="absolute top-2 font-mono text-[10px] text-[#FF6D00] font-bold">N</div>
+              <div className="absolute bottom-2 font-mono text-[10px] text-[#FF6D00] font-bold">S</div>
+              <div className="absolute left-2 font-mono text-[10px] text-[#FF6D00] font-bold">W</div>
+              <div className="absolute right-2 font-mono text-[10px] text-[#FF6D00] font-bold">E</div>
+
+              <div className="w-16 h-16 rounded-full bg-[#FF6D00]/25 border-2 border-[#FF6D00] flex flex-col items-center justify-center shadow-[0_0_35px_#FF6D00]">
+                <MapPin className="w-7 h-7 text-[#FF6D00] animate-bounce" />
                 <span className="font-mono text-[8px] text-white font-bold tracking-widest mt-0.5">0-MILE</span>
               </div>
             </div>
 
-            <span className="font-mono text-xs text-[#FF6D00] uppercase tracking-[0.3em] mb-3 px-3.5 py-1 rounded-full bg-[#FF6D00]/15 border border-[#FF6D00]/30 font-semibold">
-              GEOGRAPHIC ORIGIN
+            <span className="font-mono text-xs text-[#FF6D00] uppercase tracking-[0.3em] mb-2.5 px-3.5 py-1 rounded-full bg-[#FF6D00]/15 border border-[#FF6D00]/40 font-semibold">
+              THE GEOGRAPHIC ORIGIN
             </span>
 
-            <h2 className="font-display font-extrabold text-6xl sm:text-8xl text-white tracking-tighter mb-4">
+            <h2 className="font-display font-extrabold text-5xl sm:text-7xl text-white tracking-tighter mb-3">
               ROOTED HERE.
             </h2>
 
-            <p className="font-mono text-sm sm:text-base text-[#C2C6D5] tracking-wide">
-              Nagpur Zero Mile • 21.1458° N, 79.0882° E
+            <p className="font-sans text-base sm:text-lg text-[#C2C6D5] max-w-md leading-relaxed">
+              From Nagpur's Zero Mile Stone — the true geographic center of India.
             </p>
+
+            <div className="flex items-center gap-4 mt-5">
+              <div className="px-4 py-2 rounded-xl bg-[#161920] border border-white/10 text-left">
+                <span className="font-mono text-[10px] text-[#8C909F] block">LATITUDE</span>
+                <span className="font-mono text-sm text-white font-bold">21.1458° N</span>
+              </div>
+              <div className="px-4 py-2 rounded-xl bg-[#161920] border border-white/10 text-left">
+                <span className="font-mono text-[10px] text-[#8C909F] block">LONGITUDE</span>
+                <span className="font-mono text-sm text-white font-bold">79.0882° E</span>
+              </div>
+            </div>
           </motion.div>
 
-          {/* =================================================================== */}
           {/* PHASE 2: CONNECTED EVERYWHERE */}
-          {/* =================================================================== */}
           <motion.div
             style={{ opacity: phase2Opacity, scale: phase2Scale }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 w-full max-w-3xl">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5 w-full max-w-3xl">
               <div className="p-4 rounded-2xl bg-[#161920]/90 backdrop-blur-md border border-[#4285F4]/40 text-left shadow-xl">
                 <div className="flex items-center gap-2 mb-1.5 text-[#4285F4]">
                   <Network className="w-4 h-4" />
@@ -266,9 +287,7 @@ export default function SignatureMoment() {
             </p>
           </motion.div>
 
-          {/* =================================================================== */}
           {/* PHASE 3: GDG NAGPUR REVEAL */}
-          {/* =================================================================== */}
           <motion.div
             style={{ opacity: phase3Opacity, scale: phase3Scale }}
             className="flex flex-col items-center justify-center py-4"
@@ -302,12 +321,14 @@ export default function SignatureMoment() {
 
         </motion.div>
 
-        {/* BOTTOM FOOTER TELEMETRY BAR */}
-        <div className="relative z-20 w-full max-w-5xl pt-3 pb-3 border-t border-white/10 font-mono text-xs text-[#8C909F] backdrop-blur-md bg-black/40 px-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+        {/* BOTTOM FOOTER TELEMETRY BAR & MARQUEE */}
+        <div className="relative z-20 w-full max-w-6xl pt-3 pb-3 border-t border-white/10 font-mono text-xs text-[#8C909F] backdrop-blur-md bg-black/40 px-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
           <div className="flex items-center gap-3 overflow-hidden text-ellipsis whitespace-nowrap max-w-xl">
             <ShieldCheck className="w-4 h-4 text-[#34A853] shrink-0" />
             <span className="text-white/90 font-bold uppercase tracking-wider">SYSTEM STATUS:</span>
             <span className="text-[#FF6D00] animate-pulse font-semibold">ORANGE CITY CIRCUIT ACTIVE</span>
+            <span className="text-white/30">•</span>
+            <span className="text-[#4285F4]">5,000+ DEVELOPERS CONNECTED</span>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -322,14 +343,16 @@ export default function SignatureMoment() {
 
       </div>
 
-      {/* BOTTOM CONNECTOR BANNER */}
-      <div className="w-full bg-gradient-to-t from-[#12151C] to-[#0A0C10] py-3.5 px-6 border-t border-white/10 z-20 flex items-center justify-between font-mono text-xs text-[#8C909F]">
+      {/* =================================================================== */}
+      {/* BOTTOM CONNECTOR BANNER (BRIDGES NEXT SECTION Seamlessly) */}
+      {/* =================================================================== */}
+      <div className="w-full bg-gradient-to-t from-[#12151C] to-[#0A0C10] py-4 px-6 border-t border-white/10 z-20 flex items-center justify-between font-mono text-xs text-[#8C909F]">
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FF6D00] animate-pulse" />
-          <span className="text-white font-bold tracking-wider">TRANSITIONING TO ORANGE CITY CIRCUIT</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#34A853] animate-pulse" />
+          <span className="text-white font-bold tracking-wider">TRANSITIONING TO HERITAGE BLUEPRINT CIRCUIT</span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 text-[#FF6D00]">
-          <span>CULTURE TO TECH MORPHING</span>
+        <div className="hidden sm:flex items-center gap-2 text-[#34A853]">
+          <span>INDIAN GEOMETRY MORPHING</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
         </div>
       </div>

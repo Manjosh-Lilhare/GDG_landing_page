@@ -49,15 +49,28 @@ export default function NagpurCulturalSystem() {
     window.addEventListener('mouseleave', handleMouseLeave);
 
     // -------------------------------------------------------------------
+    // AMBIENT STAR CLUSTERS & DRIFTING PARTICLES
+    // -------------------------------------------------------------------
+    const ambientStars = Array.from({ length: 60 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 1.8 + 0.6,
+      color: Math.random() > 0.5 ? '#FF6D00' : Math.random() > 0.5 ? '#4285F4' : '#34A853',
+      alpha: Math.random() * 0.5 + 0.2,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3
+    }));
+
+    // -------------------------------------------------------------------
     // 6 ORBITAL HERITAGE SYSTEMS
     // -------------------------------------------------------------------
     
-    // Orbit 2: Orange City Particles (28 particles)
-    const orangeParticles = Array.from({ length: 28 }, (_, i) => ({
-      angle: (i / 28) * Math.PI * 2,
+    // Orbit 2: Orange City Particles (32 particles)
+    const orangeParticles = Array.from({ length: 32 }, (_, i) => ({
+      angle: (i / 32) * Math.PI * 2,
       speed: 0.003 + Math.random() * 0.002,
-      radiusOffset: (Math.random() - 0.5) * 20,
-      size: Math.random() * 2.5 + 1.5,
+      radiusOffset: (Math.random() - 0.5) * 25,
+      size: Math.random() * 2.8 + 1.5,
       alpha: Math.random() * 0.6 + 0.4,
       isCluster: Math.random() > 0.7
     }));
@@ -71,12 +84,12 @@ export default function NagpurCulturalSystem() {
     // Orbit 4: Sitabuldi Fort Sentinel Line-Art (8 nodes)
     const fortNodes = Array.from({ length: 8 }, (_, i) => ({
       angle: (i / 8) * Math.PI * 2,
-      heightOffset: Math.random() * 15
+      heightOffset: Math.random() * 18
     }));
 
-    // Orbit 5: Railway Junction Network (16 glowing track nodes)
-    const railwayNodes = Array.from({ length: 16 }, (_, i) => ({
-      angle: (i / 16) * Math.PI * 2,
+    // Orbit 5: Railway Junction Network (18 glowing track nodes)
+    const railwayNodes = Array.from({ length: 18 }, (_, i) => ({
+      angle: (i / 18) * Math.PI * 2,
       speed: (i % 2 === 0 ? 1 : -1) * (0.006 + Math.random() * 0.004),
       nodeSize: 3 + (i % 3)
     }));
@@ -124,6 +137,39 @@ export default function NagpurCulturalSystem() {
 
       const cx = width / 2;
       const cy = height / 2;
+
+      // -----------------------------------------------------------------
+      // AMBIENT DRIFTING STAR PARTICLES & CONSTELLATION LINES
+      // -----------------------------------------------------------------
+      ambientStars.forEach((star, idx) => {
+        star.x += star.vx;
+        star.y += star.vy;
+        if (star.x < 0) star.x = width;
+        if (star.x > width) star.x = 0;
+        if (star.y < 0) star.y = height;
+        if (star.y > height) star.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = star.alpha * 0.6;
+        ctx.fill();
+
+        // Connect nearby ambient stars
+        for (let j = idx + 1; j < ambientStars.length; j += 6) {
+          const star2 = ambientStars[j];
+          const dist = Math.hypot(star.x - star2.x, star.y - star2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(star.x, star.y);
+            ctx.lineTo(star2.x, star2.y);
+            ctx.strokeStyle = primaryAccent;
+            ctx.globalAlpha = (1 - dist / 130) * 0.08;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      });
 
       // Base Orbital Radius (Responsive to screen size)
       const baseRadius = Math.min(width, height) * 0.38;
