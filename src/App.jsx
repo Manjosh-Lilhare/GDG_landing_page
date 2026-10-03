@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NagpurCulturalSystem from './components/Background/NagpurCulturalSystem';
 import NagpurLoader from './components/Loader/NagpurLoader';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -7,6 +8,7 @@ import OrangeCity from './components/OrangeCity/OrangeCity';
 import Community from './components/Community/Community';
 import Events from './components/Events/Events';
 import Stories from './components/Stories/Stories';
+import SignatureMoment from './components/SignatureMoment/SignatureMoment';
 import HeritageTransition from './components/Transition/HeritageTransition';
 import Values from './components/Values/Values';
 import CTA from './components/CTA/CTA';
@@ -28,7 +30,7 @@ export default function App() {
       setScrollProgress((currentScroll / totalScroll) * 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -38,8 +40,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F1115] text-[#E2E2E8] relative selection:bg-[#FD6C00] selection:text-black">
+    <div className="min-h-screen bg-[#0F1115] text-[#E2E2E8] relative selection:bg-[#FD6C00] selection:text-black font-sans overflow-x-hidden">
       
+      {/* 0. PERSISTENT ANIMATED BACKGROUND CANVAS (6-Orbit Heritage System) */}
+      <NagpurCulturalSystem />
+
       {/* 1. Cinematic Website Loader (6-7s sequence) */}
       {loading && (
         <NagpurLoader onComplete={() => setLoading(false)} />
@@ -47,7 +52,7 @@ export default function App() {
 
       {/* Main Website Experience */}
       {!loading && (
-        <>
+        <div className="relative z-10">
           {/* Scroll Progress Bar at Top */}
           <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] bg-transparent pointer-events-none">
             <div
@@ -71,13 +76,16 @@ export default function App() {
           {/* Community Pillars */}
           <Community onOpenJoinModal={() => handleOpenJoinModal('Join Community Track')} />
 
-          {/* Events Timeline */}
+          {/* Railway Event Timeline */}
           <Events onOpenRSVPModal={(eventName) => handleOpenJoinModal(`RSVP: ${eventName}`)} />
 
           {/* Community Stories */}
           <Stories />
 
-          {/* Heritage -> Tech Transition */}
+          {/* Cinematic Scroll Signature Moment */}
+          <SignatureMoment />
+
+          {/* Heritage -> Tech Blueprint Transition */}
           <HeritageTransition />
 
           {/* Core Values */}
@@ -98,9 +106,10 @@ export default function App() {
             onClose={() => setModalOpen(false)}
             defaultTitle={modalTitle}
           />
-        </>
+        </div>
       )}
 
     </div>
   );
 }
+
