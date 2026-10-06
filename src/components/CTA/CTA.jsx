@@ -65,7 +65,7 @@ export default function CTA({ onOpenJoinModal }) {
             className="cursor-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#282A2E] hover:bg-[#333539] text-white font-display font-semibold text-sm border border-white/10 transition-all shadow-sm"
           >
             <MessageSquare className="w-4 h-4 text-[#FD6C00]" />
-            <span>Join Discord / WhatsApp</span>
+            <span>Join Discord / Instagram</span>
           </a>
         </motion.div>
 

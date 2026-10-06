@@ -1,150 +1,165 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import './PixelTransition.css';
 
-export default function PixelTransition({
+function PixelTransition({
   firstContent,
   secondContent,
-  gridSize = 12,
-  pixelColor = '#F57C00',
-  animationStepDuration = 0.5,
-  className = '',
-  style = {},
+  gridSize = 7,
+  pixelColor = 'currentColor',
+  animationStepDuration = 0.3,
   once = false,
-  aspectRatio = '16/9'
+  aspectRatio = '100%',
+  className = '',
+  style = {}
 }) {
   const containerRef = useRef(null);
+  const defaultRef = useRef(null);
+  const activeRef = useRef(null);
   const pixelGridRef = useRef(null);
-  const [activeContent, setActiveContent] = useState('first');
-  const [isMobile, setIsMobile] = useState(false);
-  const isAnimatingRef = useRef(false);
-  const hasTriggeredOnce = useRef(false);
+  const delayedCallRef = useRef(null);
+
+  const [isActive, setIsActive] = useState(false);
+
+  const isTouchDevice =
+    typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
+
+  const buildSquarePixelGrid = useCallback(() => {
+    const container = containerRef.current;
+    const pixelGridEl = pixelGridRef.current;
+    if (!container || !pixelGridEl) return;
+
+    pixelGridEl.innerHTML = '';
+
+    const rect = container.getBoundingClientRect();
+    const width = rect.width || 300;
+    const height = rect.height || 300;
+
+    // Calculate columns & rows to ensure pixel blocks are true 1:1 squares
+    const targetPixelSize = Math.max(12, width / (gridSize * 1.5));
+    const cols = Math.max(1, Math.ceil(width / targetPixelSize));
+    const rows = Math.max(1, Math.ceil(height / targetPixelSize));
+
+    const pixelW = 100 / cols;
+    const pixelH = 100 / rows;
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const pixel = document.createElement('div');
+        pixel.classList.add('pixelated-image-card__pixel');
+        pixel.style.backgroundColor = pixelColor;
+        pixel.style.width = `calc(${pixelW}% + 0.5px)`;
+        pixel.style.height = `calc(${pixelH}% + 0.5px)`;
+        pixel.style.left = `${col * pixelW}%`;
+        pixel.style.top = `${row * pixelH}%`;
+        pixelGridEl.appendChild(pixel);
+      }
+    }
+  }, [gridSize, pixelColor]);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768);
+    buildSquarePixelGrid();
+
+    const handleResize = () => {
+      buildSquarePixelGrid();
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
-  const triggerTransition = (targetState) => {
-    if (isAnimatingRef.current) return;
-    if (once && hasTriggeredOnce.current) return;
-    if (activeContent === targetState) return;
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [buildSquarePixelGrid]);
 
-    const pixels = pixelGridRef.current ? Array.from(pixelGridRef.current.children) : [];
-    if (!pixels.length) {
-      setActiveContent(targetState);
-      return;
+  const animatePixels = activate => {
+    setIsActive(activate);
+
+    const pixelGridEl = pixelGridRef.current;
+    const defaultEl = defaultRef.current;
+    const activeEl = activeRef.current;
+    if (!pixelGridEl || !defaultEl || !activeEl) return;
+
+    const pixels = pixelGridEl.querySelectorAll('.pixelated-image-card__pixel');
+    if (!pixels.length) return;
+
+    gsap.killTweensOf(pixels);
+    if (delayedCallRef.current) {
+      delayedCallRef.current.kill();
     }
 
-    isAnimatingRef.current = true;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gsap.set(pixels, { display: 'none' });
 
-    if (prefersReducedMotion) {
-      setActiveContent(targetState);
-      isAnimatingRef.current = false;
-      if (once) hasTriggeredOnce.current = true;
-      return;
-    }
+    const totalPixels = pixels.length;
+    const staggerDuration = animationStepDuration / totalPixels;
 
-    // Shuffle pixel elements for organic matrix breakup
-    const shuffledPixels = [...pixels].sort(() => Math.random() - 0.5);
-
-    gsap.timeline({
-      onComplete: () => {
-        isAnimatingRef.current = false;
-        if (once && targetState === 'second') {
-          hasTriggeredOnce.current = true;
-        }
+    // Step 1: Pixels fill the grid randomly
+    gsap.to(pixels, {
+      display: 'block',
+      duration: 0,
+      stagger: {
+        each: staggerDuration,
+        from: 'random'
       }
-    })
-      // Phase 1: Cover grid with pixels
-      .to(shuffledPixels, {
-        opacity: 1,
-        duration: 0.04,
-        stagger: {
-          amount: animationStepDuration * 0.45,
-          from: 'random'
-        },
-        ease: 'power2.inOut',
-        onComplete: () => {
-          setActiveContent(targetState);
-        }
-      })
-      // Phase 2: Uncover grid to reveal new content
-      .to(shuffledPixels, {
-        opacity: 0,
-        duration: 0.04,
-        stagger: {
-          amount: animationStepDuration * 0.45,
-          from: 'random'
-        },
-        ease: 'power2.inOut'
-      });
+    });
+
+    // Step 2: At midpoint (when screen is covered by pixels), swap content visibility to prevent text overlap
+    delayedCallRef.current = gsap.delayedCall(animationStepDuration, () => {
+      if (activate) {
+        defaultEl.style.display = 'none';
+        activeEl.style.display = 'block';
+        activeEl.style.pointerEvents = '';
+      } else {
+        activeEl.style.display = 'none';
+        defaultEl.style.display = 'block';
+        defaultEl.style.pointerEvents = '';
+      }
+    });
+
+    // Step 3: Pixels disappear randomly to reveal the new content
+    gsap.to(pixels, {
+      display: 'none',
+      duration: 0,
+      delay: animationStepDuration,
+      stagger: {
+        each: staggerDuration,
+        from: 'random'
+      }
+    });
   };
 
-  const handleMouseEnter = () => {
-    if (!isMobile) {
-      triggerTransition('second');
-    }
+  const handleEnter = () => {
+    if (!isActive) animatePixels(true);
   };
-
-  const handleMouseLeave = () => {
-    if (!isMobile && !once) {
-      triggerTransition('first');
-    }
+  const handleLeave = () => {
+    if (isActive && !once) animatePixels(false);
   };
-
   const handleClick = () => {
-    if (isMobile || once) {
-      const nextState = activeContent === 'first' ? 'second' : 'first';
-      triggerTransition(nextState);
-    }
+    if (!isActive) animatePixels(true);
+    else if (isActive && !once) animatePixels(false);
   };
-
-  const totalCells = gridSize * gridSize;
 
   return (
     <div
       ref={containerRef}
+      className={`pixelated-image-card ${className}`}
+      style={style}
+      onMouseEnter={!isTouchDevice ? handleEnter : undefined}
+      onMouseLeave={!isTouchDevice ? handleLeave : undefined}
+      onClick={isTouchDevice ? handleClick : undefined}
+      onFocus={!isTouchDevice ? handleEnter : undefined}
+      onBlur={!isTouchDevice ? handleLeave : undefined}
       tabIndex={0}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          triggerTransition(activeContent === 'first' ? 'second' : 'first');
-        }
-      }}
-      className={`pixel-transition-container cursor-target relative overflow-hidden select-none outline-none focus:ring-2 focus:ring-[#F57C00] ${className}`}
-      style={{ aspectRatio, ...style }}
-      data-cursor-color={pixelColor}
     >
-      {/* Content Layer */}
-      <div className="pixel-transition-content relative w-full h-full z-10">
-        {activeContent === 'first' ? firstContent : secondContent}
+      {aspectRatio !== '0%' && <div style={{ paddingTop: aspectRatio }} />}
+      <div className="pixelated-image-card__default" ref={defaultRef} aria-hidden={isActive}>
+        {firstContent}
       </div>
-
-      {/* Pixel Grid Overlay */}
-      <div
-        ref={pixelGridRef}
-        className="pixel-transition-grid absolute inset-0 z-20 pointer-events-none grid"
-        style={{
-          gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-          gridTemplateRows: `repeat(${gridSize}, 1fr)`
-        }}
-      >
-        {Array.from({ length: totalCells }).map((_, i) => (
-          <div
-            key={i}
-            className="pixel-cell opacity-0"
-            style={{ backgroundColor: pixelColor }}
-          />
-        ))}
+      <div className="pixelated-image-card__active" ref={activeRef} aria-hidden={!isActive}>
+        {secondContent}
       </div>
+      <div className="pixelated-image-card__pixels" ref={pixelGridRef} />
     </div>
   );
 }
+
+export default PixelTransition;
