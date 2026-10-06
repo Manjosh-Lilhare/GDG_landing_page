@@ -81,7 +81,8 @@ export default function Community({ onOpenJoinModal }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 onClick={onOpenJoinModal}
-                className={`p-8 rounded-2xl bg-[#161920] hover:bg-[#1A1C20] transition-all duration-300 shadow-md flex flex-col justify-between group border border-white/5 ${pillar.borderColor} cursor-pointer`}
+                className={`cursor-target p-8 rounded-2xl bg-[#161920] hover:bg-[#1A1C20] transition-all duration-300 shadow-md flex flex-col justify-between group border border-white/5 ${pillar.borderColor} cursor-pointer`}
+                data-cursor-label={`PILLAR: ${pillar.title}`}
               >
                 <div>
                   <div className={`w-14 h-14 rounded-2xl ${pillar.bgOpacity} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`} style={{ color: pillar.color }}>

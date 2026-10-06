@@ -24,7 +24,7 @@ export default function Navbar({ onOpenJoinModal }) {
       <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
         
         {/* Brand & Official Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
+        <a href="#hero" className="flex items-center gap-3 group cursor-target">
           <div className="h-10 w-10 rounded-xl p-[2px] bg-gradient-to-tr from-[#4285F4] via-[#FF6D00] to-[#34A853] shadow-md group-hover:scale-105 transition-transform overflow-hidden">
             <img src="/GDG_logo.jpeg" alt="GDG Logo" className="h-full w-full object-cover rounded-lg" />
           </div>
@@ -43,19 +43,19 @@ export default function Navbar({ onOpenJoinModal }) {
 
         {/* Desktop Links */}
         <nav className="hidden lg:flex items-center gap-1 bg-[#1A1C20]/80 p-1.5 rounded-xl border border-white/5 backdrop-blur-md">
-          <a href="#hero" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Home</a>
-          <a href="#heritage" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">About</a>
-          <a href="#events" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Events</a>
-          <a href="#community-pillars" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Community</a>
-          <a href="#orange-city" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Orange City</a>
-          <a href="#cta" className="px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Contact</a>
+          <a href="#hero" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Home</a>
+          <a href="#heritage" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">About</a>
+          <a href="#events" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Events</a>
+          <a href="#community-pillars" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Community</a>
+          <a href="#orange-city" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Orange City</a>
+          <a href="#cta" className="cursor-target px-4 py-1.5 text-xs font-medium text-[#C2C6D5] hover:text-white hover:bg-[#282A2E] rounded-lg transition-all">Contact</a>
         </nav>
 
         {/* Right CTA */}
         <div className="flex items-center gap-4">
           <button
             onClick={onOpenJoinModal}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#FD6C00] to-[#FF8F00] hover:from-[#FF6D00] hover:to-[#FD6C00] text-black font-display font-bold text-xs shadow-[0_0_20px_rgba(253,108,0,0.3)] hover:shadow-[0_0_28px_rgba(253,108,0,0.5)] transition-all cursor-pointer transform active:scale-95"
+            className="cursor-target hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#FD6C00] to-[#FF8F00] hover:from-[#FF6D00] hover:to-[#FD6C00] text-black font-display font-bold text-xs shadow-[0_0_20px_rgba(253,108,0,0.3)] hover:shadow-[0_0_28px_rgba(253,108,0,0.5)] transition-all cursor-pointer transform active:scale-95"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Join Community</span>

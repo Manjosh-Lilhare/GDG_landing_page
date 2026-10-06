@@ -91,7 +91,7 @@ export default function Events({ onOpenRSVPModal }) {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-lg font-sans text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`cursor-target px-4 py-2 rounded-lg font-sans text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                   filter === cat
                     ? 'bg-[#333539] text-white shadow-md'
                     : 'text-[#8C909F] hover:text-white hover:bg-[#282A2E]'
@@ -114,7 +114,8 @@ export default function Events({ onOpenRSVPModal }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="p-8 rounded-2xl bg-[#161920] hover:bg-[#1A1C20] transition-all duration-300 shadow-lg flex flex-col justify-between relative overflow-hidden group border border-white/5 hover:border-[#FD6C00]/40"
+                className="cursor-target p-8 rounded-2xl bg-[#161920] hover:bg-[#1A1C20] transition-all duration-300 shadow-lg flex flex-col justify-between relative overflow-hidden group border border-white/5 hover:border-[#FD6C00]/40"
+                data-cursor-label={ev.title}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#FD6C00]/5 rounded-bl-full pointer-events-none" />
 
@@ -157,7 +158,7 @@ export default function Events({ onOpenRSVPModal }) {
                   </span>
                   <button
                     onClick={() => onOpenRSVPModal(ev.title)}
-                    className="px-5 py-2.5 rounded-xl bg-[#282A2E] hover:bg-[#FD6C00] text-white hover:text-black font-display text-xs font-bold transition-all shadow-sm flex items-center gap-2 cursor-pointer"
+                    className="cursor-target px-5 py-2.5 rounded-xl bg-[#282A2E] hover:bg-[#FD6C00] text-white hover:text-black font-display text-xs font-bold transition-all shadow-sm flex items-center gap-2 cursor-pointer"
                   >
                     <span>{ev.cta}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

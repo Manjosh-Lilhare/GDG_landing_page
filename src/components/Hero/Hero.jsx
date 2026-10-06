@@ -29,7 +29,11 @@ export default function Hero({ onOpenJoinModal }) {
             <span className="font-mono text-xs text-[#FFDBCB] font-semibold">Central India Hub</span>
           </div>
 
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1A1C20]/80 font-mono text-xs text-[#8C909F] border border-white/5">
+          <div
+            className="cursor-target hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1A1C20]/80 font-mono text-xs text-[#8C909F] border border-white/5"
+            data-cursor-type="zero-mile"
+            data-cursor-label="ZERO MILE (0.00km)"
+          >
             <MapPin className="w-3.5 h-3.5 text-[#4285F4]" />
             <span>Zero Mile • 21.1458° N, 79.0882° E</span>
           </div>
@@ -64,7 +68,7 @@ export default function Hero({ onOpenJoinModal }) {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
               <button
                 onClick={onOpenJoinModal}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#FD6C00] via-[#FF8F00] to-[#FD6C00] text-black font-display font-bold text-sm shadow-[0_0_24px_rgba(253,108,0,0.3)] hover:shadow-[0_0_36px_rgba(253,108,0,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                className="cursor-target w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#FD6C00] via-[#FF8F00] to-[#FD6C00] text-black font-display font-bold text-sm shadow-[0_0_24px_rgba(253,108,0,0.3)] hover:shadow-[0_0_36px_rgba(253,108,0,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <span>Join the Community</span>
                 <ArrowRight className="w-4 h-4" />
@@ -72,7 +76,7 @@ export default function Hero({ onOpenJoinModal }) {
 
               <a
                 href="#events"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#282A2E]/80 hover:bg-[#333539] text-white font-display font-semibold text-sm backdrop-blur-md border border-white/10 transition-all shadow-sm"
+                className="cursor-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#282A2E]/80 hover:bg-[#333539] text-white font-display font-semibold text-sm backdrop-blur-md border border-white/10 transition-all shadow-sm"
               >
                 <Calendar className="w-4 h-4 text-[#4285F4]" />
                 <span>Explore Events</span>
@@ -109,7 +113,11 @@ export default function Hero({ onOpenJoinModal }) {
               <div className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#34A853] shadow-[0_0_12px_#34A853]" />
 
               {/* Glass Podium with GDG_logo.jpeg */}
-              <div className="relative z-10 w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2.5 bg-gradient-to-br from-[#333539] via-[#1E2024] to-[#0C0E12] shadow-2xl flex items-center justify-center group cursor-pointer">
+              <div
+                className="cursor-target relative z-10 w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2.5 bg-gradient-to-br from-[#333539] via-[#1E2024] to-[#0C0E12] shadow-2xl flex items-center justify-center group cursor-pointer"
+                data-cursor-type="orange-city"
+                data-cursor-label="GDG NAGPUR HUB"
+              >
                 <div className="w-full h-full rounded-full overflow-hidden bg-[#0C0E12] flex items-center justify-center p-3 relative border border-white/10 shadow-inner">
                   <img
                     src="/GDG_logo.jpeg"

@@ -66,7 +66,9 @@ export default function OrangeCity() {
             >
               <div
                 onClick={() => setDigitalMode(!digitalMode)}
-                className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-[#0C0E12]/90 p-6 flex flex-col items-center justify-center shadow-inner border border-white/10 cursor-pointer group hover:border-[#FD6C00]/50 transition-all"
+                className="cursor-target relative w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-[#0C0E12]/90 p-6 flex flex-col items-center justify-center shadow-inner border border-white/10 cursor-pointer group hover:border-[#FD6C00]/50 transition-all"
+                data-cursor-type="orange-city"
+                data-cursor-label="ORANGE CITY MATRIX"
               >
                 {/* Glowing Sphere Core */}
                 <div className="relative w-44 h-44 flex items-center justify-center">

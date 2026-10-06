@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NagpurCulturalSystem from './components/Background/NagpurCulturalSystem';
-import CursorFollower from './components/Background/CursorFollower';
+import TargetCursor from './components/TargetCursor/TargetCursor';
 import NagpurLoader from './components/Loader/NagpurLoader';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -43,9 +43,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#E2E2E8] relative selection:bg-[#FD6C00] selection:text-black font-sans overflow-x-hidden">
 
-      {/* 0. PERSISTENT ANIMATED BACKGROUND CANVAS & CURSOR AMBIENCE */}
+      {/* 0. PERSISTENT ANIMATED BACKGROUND CANVAS & PRECISION TARGET CURSOR */}
+      <TargetCursor active={!loading} />
       <NagpurCulturalSystem />
-      <CursorFollower />
 
       {/* 1. Cinematic Website Loader (6-7s sequence) */}
       {loading && (

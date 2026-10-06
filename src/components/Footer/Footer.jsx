@@ -33,11 +33,11 @@ export default function Footer({ onOpenJoinModal }) {
               Navigation
             </span>
             <div className="flex flex-col space-y-2 font-sans text-sm">
-              <a href="#hero" className="hover:text-white transition-colors">Home</a>
-              <a href="#heritage" className="hover:text-white transition-colors">About</a>
-              <a href="#events" className="hover:text-white transition-colors">Events</a>
-              <a href="#community-pillars" className="hover:text-white transition-colors">Community</a>
-              <a href="#cta" className="hover:text-white transition-colors">Contact</a>
+              <a href="#hero" className="cursor-target hover:text-white transition-colors">Home</a>
+              <a href="#heritage" className="cursor-target hover:text-white transition-colors">About</a>
+              <a href="#events" className="cursor-target hover:text-white transition-colors">Events</a>
+              <a href="#community-pillars" className="cursor-target hover:text-white transition-colors">Community</a>
+              <a href="#cta" className="cursor-target hover:text-white transition-colors">Contact</a>
             </div>
           </div>
 
@@ -47,10 +47,10 @@ export default function Footer({ onOpenJoinModal }) {
               Engage
             </span>
             <div className="flex flex-col space-y-2 font-sans text-sm">
-              <a href="#events" className="hover:text-[#4285F4] transition-colors">Upcoming DevFests</a>
-              <a href="#stories" className="hover:text-[#4285F4] transition-colors">Community Stories</a>
-              <a href="#heritage" className="hover:text-[#4285F4] transition-colors">Nagpur Ecosystem</a>
-              <button onClick={onOpenJoinModal} className="hover:text-[#FD6C00] transition-colors text-left cursor-pointer">Become an Organizer</button>
+              <a href="#events" className="cursor-target hover:text-[#4285F4] transition-colors">Upcoming DevFests</a>
+              <a href="#stories" className="cursor-target hover:text-[#4285F4] transition-colors">Community Stories</a>
+              <a href="#heritage" className="cursor-target hover:text-[#4285F4] transition-colors">Nagpur Ecosystem</a>
+              <button onClick={onOpenJoinModal} className="cursor-target hover:text-[#FD6C00] transition-colors text-left cursor-pointer">Become an Organizer</button>
             </div>
           </div>
 
@@ -63,16 +63,16 @@ export default function Footer({ onOpenJoinModal }) {
           </p>
 
           <div className="flex items-center gap-4 text-[#8C909F]">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-target hover:text-white transition-colors" aria-label="LinkedIn" data-cursor-label="LINKEDIN">
               <Linkedin className="w-4 h-4" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Instagram">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-target hover:text-white transition-colors" aria-label="Instagram" data-cursor-label="INSTAGRAM">
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="X / Twitter">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-target hover:text-white transition-colors" aria-label="X / Twitter" data-cursor-label="X / TWITTER">
               <Twitter className="w-4 h-4" />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="GitHub">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-target hover:text-white transition-colors" aria-label="GitHub" data-cursor-label="GITHUB">
               <Github className="w-4 h-4" />
             </a>
           </div>

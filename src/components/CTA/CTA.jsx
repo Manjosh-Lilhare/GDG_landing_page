@@ -14,7 +14,9 @@ export default function CTA({ onOpenJoinModal }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="w-20 h-20 rounded-2xl p-1 bg-[#1E2024] border border-[#FD6C00]/40 mx-auto mb-6 shadow-2xl overflow-hidden"
+          className="cursor-target w-20 h-20 rounded-2xl p-1 bg-[#1E2024] border border-[#FD6C00]/40 mx-auto mb-6 shadow-2xl overflow-hidden"
+          data-cursor-type="orange-city"
+          data-cursor-label="GDG NAGPUR"
         >
           <img src="/GDG_logo.jpeg" alt="GDG Insignia" className="w-full h-full object-cover rounded-xl" />
         </motion.div>
@@ -48,7 +50,9 @@ export default function CTA({ onOpenJoinModal }) {
         >
           <button
             onClick={onOpenJoinModal}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#FD6C00] to-[#FF8F00] text-black font-display font-bold text-sm shadow-[0_0_24px_rgba(253,108,0,0.3)] hover:shadow-[0_0_36px_rgba(253,108,0,0.5)] hover:scale-[1.02] transition-all cursor-pointer"
+            className="cursor-target w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#FD6C00] to-[#FF8F00] text-black font-display font-bold text-sm shadow-[0_0_24px_rgba(253,108,0,0.3)] hover:shadow-[0_0_36px_rgba(253,108,0,0.5)] hover:scale-[1.02] transition-all cursor-pointer"
+            data-cursor-color="#FD6C00"
+            data-cursor-label="JOIN COMMUNITY"
           >
             <span>Join the Community</span>
             <ArrowRight className="w-4 h-4" />
@@ -58,7 +62,7 @@ export default function CTA({ onOpenJoinModal }) {
             href="https://gdg.community.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#282A2E] hover:bg-[#333539] text-white font-display font-semibold text-sm border border-white/10 transition-all shadow-sm"
+            className="cursor-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#282A2E] hover:bg-[#333539] text-white font-display font-semibold text-sm border border-white/10 transition-all shadow-sm"
           >
             <MessageSquare className="w-4 h-4 text-[#FD6C00]" />
             <span>Join Discord / WhatsApp</span>

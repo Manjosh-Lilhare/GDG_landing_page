@@ -137,6 +137,21 @@ export default function Heritage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {heritageNodes.map((item, idx) => {
             const IconComp = item.icon;
+            // Map item ID to cursor attributes
+            const cursorType = item.id === 'zero-mile' ? 'zero-mile'
+              : item.id === 'deekshabhoomi' ? 'deekshabhoomi'
+              : item.id === 'futala-lake' ? 'futala'
+              : item.id === 'railway-crossing' ? 'railway'
+              : item.id === 'sitabuldi-fort' ? 'sitabuldi'
+              : 'orange-city';
+
+            const cursorLabel = item.id === 'zero-mile' ? 'ZERO MILE (0.00km)'
+              : item.id === 'deekshabhoomi' ? 'DEEKSHABHOOMI'
+              : item.id === 'futala-lake' ? 'FUTALA LAKE'
+              : item.id === 'railway-crossing' ? 'RAILWAY HUB'
+              : item.id === 'sitabuldi-fort' ? 'SITABULDI FORT'
+              : 'ORANGE CITY';
+
             return (
               <motion.div
                 key={item.id}
@@ -144,7 +159,9 @@ export default function Heritage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="group relative rounded-2xl bg-[#161920] p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden border border-white/5 hover:border-[#FD6C00]/40"
+                className="cursor-target group relative rounded-2xl bg-[#161920] p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden border border-white/5 hover:border-[#FD6C00]/40"
+                data-cursor-type={cursorType}
+                data-cursor-label={cursorLabel}
               >
                 <div className="absolute -right-8 -top-8 w-36 h-36 bg-[#FD6C00]/5 rounded-full blur-2xl group-hover:bg-[#FD6C00]/15 transition-all" />
 

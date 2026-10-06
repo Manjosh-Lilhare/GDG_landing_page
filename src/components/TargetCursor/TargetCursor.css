@@ -1,0 +1,104 @@
+/* Global body state when custom cursor is active */
+body.custom-cursor-active,
+body.custom-cursor-active a,
+body.custom-cursor-active button,
+body.custom-cursor-active [role="button"],
+body.custom-cursor-active input,
+body.custom-cursor-active select,
+body.custom-cursor-active textarea,
+body.custom-cursor-active .cursor-target {
+  cursor: none !important;
+}
+
+/* Target Cursor Root Wrapper */
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  mix-blend-mode: difference;
+  will-change: transform;
+  transform: translate3d(-100px, -100px, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Dot */
+.target-cursor-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Rotating container holding 4 corner brackets */
+.target-cursor-spin-container {
+  position: absolute;
+  width: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Corner Bracket Base */
+.target-cursor-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
+}
+
+/* Default initial offsets (-12px / +12px) for corners */
+.corner-tl {
+  top: 0;
+  left: 0;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  transform: translate3d(-12px, -12px, 0);
+}
+
+.corner-tr {
+  top: 0;
+  left: 0;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  transform: translate3d(12px, -12px, 0);
+}
+
+.corner-bl {
+  top: 0;
+  left: 0;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  transform: translate3d(-12px, 12px, 0);
+}
+
+.corner-br {
+  top: 0;
+  left: 0;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  transform: translate3d(12px, 12px, 0);
+}
+
+
+/* Special Futala Water Ripple */
+.target-cursor-ripple {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #F57C00;
+  opacity: 0.7;
+  pointer-events: none;
+}
